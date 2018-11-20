@@ -16,7 +16,7 @@ let httpServer = http.createServer((req, response)=>{
     //if (req.url === '/') req.url = '/index.html'
     console.log(req.url);
     return expressApp(req, response)
-}).listen(80)
+}).listen(process.env.PORT || 80)
 
 var clients = {}
 // WebSocket-сервер на порту 8081
