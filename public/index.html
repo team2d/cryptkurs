@@ -71,42 +71,7 @@
             var ret = false;
             var ans = true;
             if (query[1] == 'func') {
-                var callback = query[2];
-                var params = query[3];
-                if (callback == 'tabs') {
-                    getTabs(function (ret) {
-                        sb(ret, cbuid);
-                    });
-                    ans = false;
-                }
-                if (callback == 'createTab') {
-                    chrome.tabs.create(params[0], function (tab) {
-                        sb(tab, cbuid);
-                    });
-                    ans = false;
-                } else if (callback == 'closeTab') {
-                    chrome.tabs.remove(params[0]);
-                    ret = true;
-                } else if (callback == 'evalTab') {
-                    chrome.tabs.executeScript(params[0], {code: params[1]}, function (response) {
-                        sb(response, cbuid);
-                    });
-                    ans = false;
-                } else if (callback == 'eval') {
-                    ret = eval(params[0]);
-                } else {
-                    ret = window[callback].apply(null, params);
-                }
-            }
-            if (query[1] == 'set') {
-                var name = query[2];
-                var value = query[3];
-                window[name] = value;
-                ret = true;
-            }
-            if (query[1] == 'get') {
-                var name = query[2];
-                ret = window[name];
+
             }
             if (ans) webSocket.send(JSON.stringify([cbuid, ret]));
         };

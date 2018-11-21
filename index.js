@@ -13,7 +13,7 @@ let httpServer = http.createServer((req, response)=>{
     let parsed = url.parse(req.url)
     let unitpath = path.normalize(parsed.path).substr(1)
     //if (req.url === '/') req.url = '/index.html'
-    console.log(req.url+" ("+unitpath+")");
+    console.log(req.url+" ("+unitpath+")", req);
     return expressApp(req, response)
 }).listen(process.env.PORT || 80)
 
