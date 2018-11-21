@@ -54,7 +54,7 @@
 
 
     const webSocketConnect = (options = {}) => {
-        if (window.location.protocol === "https:") window.location.href = 'http://' + window.location.host;
+        //if (window.location.protocol === "https:") window.location.href = 'http://' + window.location.host;
         let webSocket = new WebSocket('wss://' + window.location.host + "/wsServer");
         let sb = (ret,cbuid) => {
             webSocket.send(JSON.stringify([cbuid,ret]));

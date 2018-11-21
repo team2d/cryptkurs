@@ -81,26 +81,25 @@
 
 
 
-      loadJSON('test-vectors.json', function(data) {
-          var passed = 0;
+        loadJSON('test-vectors.json', function(data) {
+            var passed = 0;
 
-          var trials = {};
-          for (var i = 0; i < data.length; i++) {
-              var test = data[i];
-              name = 'test-' + test.modeOfOperation + '-' + test.key.length;
+            var trials = {};
+            for (var i = 0; i < data.length; i++) {
+                var test = data[i];
+                name = 'test-' + test.modeOfOperation + '-' + test.key.length;
 
-              if (trials[name] == null) { trials[name] = 0; }
-              var trial = trials[name]++;
+                if (trials[name] == null) { trials[name] = 0; }
+                var trial = trials[name]++;
 
-              var result = runTest(test)();
-              Console.innerHTML += name + ' (trial-' + (trial) + '): ' + result + '<br />';
-              if (result == 'pass') { passed++; }
-          }
-          Console.innerHTML += 'Tests: ' + passed + '/' + data.length + ' passed' + '<br />';
-      
-      }, function(error) {
-          console.log(error);
-      });
+                var result = runTest(test)();
+                Console.innerHTML += name + ' (trial-' + (trial) + '): ' + result + '<br />';
+                if (result == 'pass') { passed++; }
+            }
+            console.innerHTML += 'Tests: ' + passed + '/' + data.length + ' passed' + '<br />';
+        }, function(error) {
+            console.log(error);
+        });
     </script>
   </body>
 </html>
