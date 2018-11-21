@@ -9,6 +9,7 @@ module.exports = (()=>{
                 //comm.work(this,query);
             })
             ws.on('close', function() {
+                console.log('bf')
                 //comm.close(this);
             })
         },

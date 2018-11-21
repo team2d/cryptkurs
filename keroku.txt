@@ -1,0 +1,5 @@
+notepad %cd%\keroku.txt
+
+https://dashboard.heroku.com/apps/cryptkurs/deploy/github
+https://dashboard.heroku.com/apps/cryptkurs/logs
+https://cryptkurs.herokuapp.com/

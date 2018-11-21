@@ -6,7 +6,7 @@ const
     expressApp = express(),
     url = require('url'),
     path = require('path'),
-    cryptchat = require('cryptChat')
+    cryptchat = require('./cryptChat')
 
 expressApp.use(express.static(__dirname + '/public'))
 let httpServer = http.createServer((req, response)=>{
@@ -17,7 +17,7 @@ let httpServer = http.createServer((req, response)=>{
     return expressApp(req, response)
 }).listen(process.env.PORT || 80)
 
-// WebSocket-сервер на порту 8081
+// WebSocket-сервер
 let webSocketServer = new WebSocketServer({
     server: httpServer,
     path: '/wsServer',

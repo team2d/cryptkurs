@@ -1,0 +1,12 @@
+notepad %cd%\keroku.txt
+
+https://dashboard.heroku.com/apps/cryptkurs/deploy/github
+https://dashboard.heroku.com/apps/cryptkurs/logs
+https://cryptkurs.herokuapp.com/
+
+git add .
+git commit -m "First commit"
+git push
+
+NeDB: аналог SQLite для NodeJS
+https://habr.com/post/301916/
