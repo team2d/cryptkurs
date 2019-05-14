@@ -15,12 +15,12 @@
     var key_256_array = new Uint8Array(key_256);
 
 
-    //// or, you may use Buffer in node.js:
+    //// or, you may use Buffer in node.js:S
     //var key_128_buffer = Buffer.from(key_128);
     //var key_192_buffer = Buffer.from(key_192);
     //var key_256_buffer = Buffer.from(key_256);
     // An example 128-bit key (16 bytes * 8 bits/byte = 128 bits)
-    var key = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ];
+    var key = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 
     // Convert text to bytes
     var text = 'Text may be any length you wish, no padding is required.';
@@ -52,19 +52,30 @@
 
     // ----------------------------------------------------------------------------
 
+    let timeoutId = false;
+    const loopFunc = (func) => {
+        if (false !== timeoutId) clearTimeout(timeoutId)
+        timeoutId = setTimeout(() => {
+            timeoutId = false;
+            func()
+            loopFunc()
+        }, 20000)
+    }
 
     const webSocketConnect = (options = {}) => {
         //if (window.location.protocol === "https:") window.location.href = 'http://' + window.location.host;
         let webSocket = new WebSocket('wss://' + window.location.host + "/wsServer");
-        let sb = (ret,cbuid) => {
-            webSocket.send(JSON.stringify([cbuid,ret]));
+        let sb = (ret, cbuid) => {
+            webSocket.send(JSON.stringify([cbuid, ret]));
         }
         webSocket.onopen = function (event) {
             //webSocket.send(JSON.stringify({'connect': document.location.href}));
             cbuid = 0;
-            if (undefined !== options.onClient) options.onClient(event,{'connect': document.location.href});
+            if (undefined !== options.onClient) options.onClient(event, {'connect': document.location.href});
 
-            //webSocket.send(JSON.stringify([cbuid, {'connect': document.location.href}]));
+            loopFunc(()=>{
+                if (webSocket.readyState === 1) webSocket.send(JSON.stringify([{'connect': document.location.href}]));
+            });
         };
         webSocket.onmessage = function (event) {
             var query = JSON.parse(event.data);
