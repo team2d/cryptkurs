@@ -53,8 +53,9 @@
     // ----------------------------------------------------------------------------
 
     let timeoutId = false;
-    const loopFunc = (func) => {
+    const loopFunc = (_func) => {
         if (false !== timeoutId) clearTimeout(timeoutId)
+        let func = _func
         timeoutId = setTimeout(() => {
             timeoutId = false;
             func()

@@ -4,9 +4,10 @@ https://dashboard.heroku.com/apps/cryptkurs/deploy/github
 https://dashboard.heroku.com/apps/cryptkurs/logs
 https://cryptkurs.herokuapp.com/
 
+set path=%path%;C:\Program Files\Git\cmd\
 git add .
 git commit -m "First commit"
 git push
 
-NeDB: аналог SQLite для NodeJS
+NeDB: пїЅпїЅпїЅпїЅпїЅпїЅ SQLite пїЅпїЅпїЅ NodeJS
 https://habr.com/post/301916/
